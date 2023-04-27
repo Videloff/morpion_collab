@@ -1,20 +1,9 @@
 require_relative "lib/Game.rb"
 require_relative "lib/Board.rb"
-require_relative "lib/Player"
+require_relative "lib/Player.rb"
+require_relative "lib/Show.rb"
 
 require 'colorize'
-
-########## BOARD ###########
-
-board = "
-╔═══╦═══╦═══╗
-║   ║   ║   ║
-╠═══╬═══╬═══╣
-║   ║   ║   ║
-╠═══╬═══╬═══╣
-║   ║   ║   ║
-╚═══╩═══╩═══╝
-"
 
 def verify_input(choice)
     return ((choice.length < 2 || choice.length > 2 )|| 
@@ -22,14 +11,12 @@ def verify_input(choice)
             (choice[1].to_i < 1 || choice[1].to_i > 3)) ? false : true
 end
 
-system('cls')
+game = Game.new("Vince", "Zine")
+show = Show.new(game.board)
 
-board = Board.new(board)
+while !game.is_Finish
 
-input = gets.chomp
+    game.input_listener()
+    show.display()
 
-if verify_input(input)
-    board.puts_symbol(2, input)
 end
-
-board.display()

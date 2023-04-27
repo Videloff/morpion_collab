@@ -1,61 +1,64 @@
-CONST_WIDTH = 3
-CONST_HEIGHT = 3
+require_relative "BoardCase.rb"
 
 class Board
-    attr_accessor :board_grid
 
-    def initialize(board)
-        @board = board
+    def initialize()
+        @board = "
+        ╔═══╦═══╦═══╗
+        ║   ║   ║   ║
+        ╠═══╬═══╬═══╣
+        ║   ║   ║   ║
+        ╠═══╬═══╬═══╣
+        ║   ║   ║   ║
+        ╚═══╩═══╩═══╝
+        "
         
-        @board_grid = [[]]
-        for h in 1..CONST_HEIGHT
-            for w in 1..CONST_WIDTH
-                @board_grid[h,w] = 0
-            end
-        end
+        @cells = Array.new()
+
+        @cells << BoardCase.new("a1")
+        @cells << BoardCase.new("a2")
+        @cells << BoardCase.new("a3")
+
+        @cells << BoardCase.new("b1")
+        @cells << BoardCase.new("b2")
+        @cells << BoardCase.new("b3")
+
+        @cells << BoardCase.new("c1")
+        @cells << BoardCase.new("c2")
+        @cells << BoardCase.new("c3")
+
     end
+
+    def verify_placement(choice)
+        if choice[0] == choice[0].upcase
+            choice[0] = choice[0].downcase
+        end
+        @cells.each { |c| 
+            if c.cell_name == choice
+                if c.is_empty
+                    return true
+                else
+                    return false
+                end
+            end
+        }
+    end
+
     # L = LETTER / N = NUMBER
     def puts_symbol(playerNumber, choice)
 
-        l = choice[0]
-        n = choice[1].to_i
-
         ( playerNumber == 1 ) ? symbol = 'x' : symbol = 'o'
 
-        case l
-            when 'a','A'
-                case n
-                    when 1
-                        @board[17] = symbol
-                    when 2
-                        @board[21] = symbol
-                    when 3
-                        @board[25] = symbol
-                end
-
-            when 'b', 'B'
-                case n
-                when 1
-                    @board[45] = symbol
-                when 2
-                    @board[49] = symbol
-                when 3
-                    @board[53] = symbol
+        @cells.each { |c| 
+            if c.cell_name == choice
+                @board[c.cell_number] = symbol
+                c.is_empty = false
             end
-
-            when 'c', 'C'
-                case n
-                when 1
-                    @board[73] = symbol
-                when 2
-                    @board[77] = symbol
-                when 3
-                    @board[81] = symbol
-            end
-        end
+        }
     end
 
     def display()
+        system('cls') || system('clear')
         print @board
         print "\n"
     end
