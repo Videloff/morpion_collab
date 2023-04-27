@@ -8,9 +8,9 @@ class Game
         @winner = ""
         @currentPlayer = rand(1..2)
         @board = Board.new()
-        @players = []
-        @players[1] = Player.new(p1)
-        @players[2] = Player.new(p2)
+        @players = Array.new
+        @players[1] = p1
+        @players[2] = p2
         @is_Finish = false
     end
 
@@ -29,7 +29,7 @@ class Game
             choice = gets.chomp
         end
 
-        board.puts_symbol(@currentPlayer, choice)
+        @board.puts_symbol(@currentPlayer, choice)
     end
 
     def logic()
@@ -111,5 +111,27 @@ class Game
                 (choice[0] !='a' && choice[0] != 'A' && choice[0] != 'b' && choice[0] != 'B' && choice[0] != 'c' && choice[0] != 'C') ||
                 (choice[1].to_i < 1 || choice[1].to_i > 3)) ? false : true
     end
+    
+    def check_solution
+
+            for i in 1..2
+                #Lignes horizontales
+            if  (@board.board[33] == @players[i].symbol && @board.board[37] == @players[i].symbol && @board.board[41] == @players[i].symbol)    || 
+                (@board.board[77] == @players[i].symbol && @board.board[81] == @players[i].symbol && @board.board[85] == @players[i].symbol)    ||
+                (@board.board[121] == @players[i].symbol && @board.board[125] == @players[i].symbol && @board.board[129] == @players[i].symbol) ||
+                #Lignes verticales
+                (@board.board[33] == @players[i].symbol && @board.board[77] == @players[i].symbol && @board.board[121] == @players[i].symbol)   ||
+                (@board.board[37] == @players[i].symbol && @board.board[81] == @players[i].symbol && @board.board[125] == @players[i].symbol)   ||
+                (@board.board[41] == @players[i].symbol && @board.board[85] == @players[i].symbol && @board.board[129] == @players[i].symbol)   ||
+                #Lignes diagonales
+                (@board.board[33] == @players[i].symbol && @board.board[81] == @players[i].symbol && @board.board[129] == @players[i].symbol)   ||
+                (@board.board[41] == @players[i].symbol && @board.board[81] == @players[i].symbol && @board.board[121] == @players[i].symbol)
+
+                @winner = @players[i].name
+                @is_Finish = true
+                @players[i].add_score
+            end
+        end
+    end 
 
 end

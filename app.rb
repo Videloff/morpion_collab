@@ -18,28 +18,32 @@ def get_names
   return names
 end
 
-def start_new_game(names)
-  game = Game.new(names[0], names[1])
+def start_new_game(player1, player2, game_number)
+  game = Game.new(player1, player2)
   show = Show.new(game.board)
 
   while !game.is_Finish
 
     game.input_listener()
     show.display()
+    game.check_solution
     # game.algo
   end
+  puts "#{game.winner} a gagné la partie #{game_number} !"
 end
 
 def main
   game_number = 1
   names = get_names
   restart = ""
+  player1 = Player.new(1, names[0])
+  player2 = Player.new(2, names[1])
 
-  start_new_game(names)
+  start_new_game(player1, player2, game_number)
   puts "Voulez-vous refaire une partie ? (O/N)"
   restart = gets.chomp
 
-  puts "#{game.winner} a gagné la partie #{game_number} !"
+  
   # while (restart != "O" && restart != "o" && restart != "Oui" && restart != "oui" &&
   #   restart != "N" && restart != "n" && restart != "Non" && restart != "non")
   #   puts "Erreur de saisie.\nVoulez-vous refaire une partie ? (O/N)"

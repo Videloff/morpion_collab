@@ -1,6 +1,7 @@
 require_relative "boardcase.rb"
 
 class Board
+    attr_accessor :board
 
     def initialize()
         @board = "
