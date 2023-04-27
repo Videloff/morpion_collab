@@ -1,9 +1,9 @@
 class Player
-  attr_accessor :name, :symbol
+  attr_accessor :name, :number
 
-  def initialize(name_to_save, symbol_mark)
+  def initialize(name_to_save, player_number)
     @name = name_to_save
-    @symbol = symbol_mark
+    @number = player_number
   end
 
 end

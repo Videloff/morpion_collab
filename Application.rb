@@ -1,6 +1,5 @@
-require_relative "lib/Game.rb"
 require_relative "lib/Board.rb"
-require_relative "lib/Player"
+require_relative "lib/player"
 
 require 'colorize'
 
@@ -22,9 +21,15 @@ def verify_input(choice)
             (choice[1].to_i < 1 || choice[1].to_i > 3)) ? false : true
 end
 
-system('cls')
-
 board = Board.new(board)
+
+input = gets.chomp
+
+if verify_input(input)
+    board.puts_symbol(1, input)
+end
+
+board.display()
 
 input = gets.chomp
 
@@ -33,3 +38,6 @@ if verify_input(input)
 end
 
 board.display()
+# puts "x".ord
+
+# puts String.colors

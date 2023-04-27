@@ -6,7 +6,7 @@ class Board
 
     def initialize(board)
         @board = board
-        
+    
         @board_grid = [[]]
         for h in 1..CONST_HEIGHT
             for w in 1..CONST_WIDTH
@@ -20,7 +20,7 @@ class Board
         l = choice[0]
         n = choice[1].to_i
 
-        ( playerNumber == 1 ) ? symbol = 'x' : symbol = 'o'
+        ( playerNumber == 1 ) ? symbol = 'X'.light_red : symbol = 'O'.light_green
 
         case l
             when 'a','A'
@@ -56,7 +56,8 @@ class Board
     end
 
     def display()
-        print @board
+        system('CLS') || system('clear')
+        puts @board
         print "\n"
     end
 
