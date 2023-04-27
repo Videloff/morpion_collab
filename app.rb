@@ -17,11 +17,9 @@ end
 
 def main
   names = get_names
-  joueur1 = Player.new(names[0], "x")
-  joueur2 = Player.new(names[1], "y")
-  puts "-----"
-  puts joueur1.name
-  puts joueur2.name
+  joueur1 = Player.new(names[0], 1)
+  joueur2 = Player.new(names[1], 2)
+
 end
 
 main

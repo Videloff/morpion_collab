@@ -2,6 +2,7 @@ require_relative "BoardCase.rb"
 
 class Board
 
+<<<<<<< HEAD
     def initialize()
         @board = "
         ╔═══╦═══╦═══╗
@@ -27,6 +28,17 @@ class Board
         @cells << BoardCase.new("c2")
         @cells << BoardCase.new("c3")
 
+=======
+    def initialize(board)
+        @board = board
+    
+        @board_grid = [[]]
+        for h in 1..CONST_HEIGHT
+            for w in 1..CONST_WIDTH
+                @board_grid[h,w] = 0
+            end
+        end
+>>>>>>> 0e7f6ef6782a740cc7c827708d38b9099dd31f7d
     end
 
     def verify_placement(choice)
@@ -47,7 +59,14 @@ class Board
     # L = LETTER / N = NUMBER
     def puts_symbol(playerNumber, choice)
 
+<<<<<<< HEAD
         ( playerNumber == 1 ) ? symbol = 'x' : symbol = 'o'
+=======
+        l = choice[0]
+        n = choice[1].to_i
+
+        ( playerNumber == 1 ) ? symbol = 'X'.light_red : symbol = 'O'.light_green
+>>>>>>> 0e7f6ef6782a740cc7c827708d38b9099dd31f7d
 
         @cells.each { |c| 
             if c.cell_name == choice
@@ -58,8 +77,13 @@ class Board
     end
 
     def display()
+<<<<<<< HEAD
         system('cls') || system('clear')
         print @board
+=======
+        system('CLS') || system('clear')
+        puts @board
+>>>>>>> 0e7f6ef6782a740cc7c827708d38b9099dd31f7d
         print "\n"
     end
 
