@@ -8,9 +8,9 @@ def get_names
   puts "La partie de morpion va commencer, mais avant, veuillez choisir les pseudos des deux joueurs !"
   names = []
   print "Choisissez un pseudo pour le joueur 1\n >> "
-  names[0] = gets.chomp + "-j1"
+  names[0] = gets.chomp + " - j1"
   print "Choisissez un pseudo pour le joueur 2\n >> "
-  names[1] = gets.chomp + "-j2"
+  names[1] = gets.chomp + " - j2"
 
   return names
 end
