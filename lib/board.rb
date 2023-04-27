@@ -1,4 +1,4 @@
-require_relative "BoardCase.rb"
+require_relative "boardcase.rb"
 
 class Board
 
