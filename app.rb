@@ -16,9 +16,14 @@ def get_names
 end
 
 def main
+  gamme_number = 0
   names = get_names
+
+  gamme_number += 1
   joueur1 = Player.new(names[0], 1)
   joueur2 = Player.new(names[1], 2)
+  if gamme_number > 0
+    start_new_game
 
 end
 
